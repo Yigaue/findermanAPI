@@ -1,5 +1,6 @@
 <?php
 
+use App\People;
 use Illuminate\Http\Request;
 
 /*
@@ -17,7 +18,4 @@ use Illuminate\Http\Request;
 //     return $request->user();
 // });
 
-Route::get('/person', function(){
-
-    return $person = ['first_name'=>'Khris', 'last_name' => 'Hommes', 'age'=>23];
-});
+Route::apiResource('/person', 'peopleController');
