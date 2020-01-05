@@ -39,4 +39,42 @@ class peopleController extends Controller
 
         return new PeopleResource($person);
     }
+
+    public function update(People $person) : PeopleResource
+
+    {
+        //  $data =  request()->validate([
+
+        //     'first_name' => 'required',
+        //     'last_name' => 'required',
+        //     'email' => 'required',
+        //     'phone' => 'required',
+        //     'city' => 'required'
+        // ]);
+
+
+        $recordedUpdated = $person->update(request([
+            'first_name' , 'last_name', 'phone', 'city', 'email'
+
+            ])
+
+        );
+
+        return new PeopleResource($person);
+    }
+
+    public function destroy(People $person)
+    {
+        $person->delete();
+
+        return response()->json([
+
+           'message' => 'record delete',
+
+           'status' => 200,
+
+           'id' => $person->id,
+
+           ]);
+    }
 }
